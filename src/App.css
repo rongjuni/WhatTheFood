@@ -7,6 +7,17 @@
   pointer-events: none;
 }
 
+.welcomeToWTF{
+  font-size: 350;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.whatTheFood{
+  text-align: center;
+  margin-top: 2;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

@@ -41,6 +41,8 @@ function App() {
 
   return (
     <div style={{ padding: "10px" }}>
+      <h1 className="welcomeToWTF">Welcome to WTF</h1>
+      <h3 className="whatTheFood">What The Food</h3>
       <Paper
         type="text"
         onSubmit={updateQuery}
@@ -48,9 +50,9 @@ function App() {
         sx={{
           p: "2px 4px",
           display: "flex",
-          alignItems: "center",
+          alignItems: "right",
           width: 400,
-          marginBottom: "5%",
+          margin: "2%",
         }}
       >
         <InputBase
