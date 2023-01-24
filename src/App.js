@@ -15,7 +15,7 @@ function App() {
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("chicken");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     getRecipes();
@@ -37,6 +37,7 @@ function App() {
   const updateQuery = (e) => {
     e.preventDefault();
     setQuery(search);
+    setSearch("");
   };
 
   return (
@@ -52,7 +53,7 @@ function App() {
           display: "flex",
           alignItems: "right",
           width: 400,
-          margin: "2%",
+          margin: "auto",
         }}
       >
         <InputBase
