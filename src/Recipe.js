@@ -32,9 +32,12 @@ const Recipe = ({ title, calories, image, ingridient, int }) => {
   return (
     <div>
       <Card sx={{ maxWidth: 345 }} style={{ margin: "10px" }}>
-        <CardHeader title={title} subheader={calories} />
+        <CardHeader
+          title={title}
+          subheader={Math.round(calories) + " Cal"}
+          text="ddd"
+        />
         <CardMedia component="img" image={image} />
-
         <CardActions disableSpacing>
           <div>Ingridients</div>
           <ExpandMore
