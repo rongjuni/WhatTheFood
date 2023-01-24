@@ -5,11 +5,9 @@ import axios from "axios";
 
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import Grid from "@mui/material/Grid";
 import SearchIcon from "@mui/icons-material/Search";
-import DirectionsIcon from "@mui/icons-material/Directions";
 
 function App() {
   let APP_ID = "7e8783af";
@@ -28,7 +26,7 @@ function App() {
       `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
     );
     setRecipes(response.data.hits);
-    console.log(response.data.hits);
+    console.log("response.data.hits", response.data.hits);
   };
 
   const updateSearch = (e) => {
@@ -42,40 +40,51 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div style={{ padding: "10px" }}>
       <Paper
+        type="text"
+        onSubmit={updateQuery}
         component="form"
-        sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}
+        sx={{
+          p: "2px 4px",
+          display: "flex",
+          alignItems: "center",
+          width: 400,
+          marginBottom: "5%",
+        }}
       >
-        <IconButton sx={{ p: "10px" }} aria-label="menu">
-          <MenuIcon />
-        </IconButton>
         <InputBase
-          sx={{ ml: 1, flex: 1 }}
-          placeholder="Search Google Maps"
-          inputProps={{ "aria-label": "search google maps" }}
+          type="text"
+          value={search}
+          onChange={updateSearch}
+          sx={{ ml: 2, flex: 1 }}
+          placeholder="What Do You Feel like To Eat Today"
+          inputProps={{ "aria-label": "food search" }}
         />
         <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
           <SearchIcon />
         </IconButton>
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <IconButton color="primary" sx={{ p: "10px" }} aria-label="directions">
-          <DirectionsIcon />
-        </IconButton>
       </Paper>
-      <form onSubmit={updateQuery}>
+      {/* <form onSubmit={updateQuery}>
         <input type="text" value={search} onChange={updateSearch} />
         <button type="submit">Search</button>
-      </form>
-      {recipes.map((recipes, int) => (
-        <Recipe
-          title={recipes.recipe.label}
-          calories={recipes.recipe.calories}
-          image={recipes.recipe.image}
-          ingridient={recipes.recipe.ingredientLines}
-          int={int}
-        />
-      ))}
+      </form> */}
+      <div style={{ margin: "10px" }}>
+        <Grid container>
+          {recipes.map((recipes, int) => (
+            <Grid item xs={3}>
+              <Recipe
+                key={recipes.recipe.label}
+                title={recipes.recipe.label}
+                calories={recipes.recipe.calories}
+                image={recipes.recipe.image}
+                ingridient={recipes.recipe.ingredientLines}
+                int={int}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     </div>
   );
 }
